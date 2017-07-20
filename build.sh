@@ -18,6 +18,9 @@ if [ "$_grafana_version" != "" ]; then
 else
 	echo "Building latest for master"
 	docker build \
+		--build-arg http_proxy=$http_proxy \
+                --build-arg https_proxy=$https_proxy \
+                --build-arg no_proxy=$no_proxy \
 		--build-arg DOWNLOAD_URL=https://s3-us-west-2.amazonaws.com/grafana-releases/master/grafana_latest_amd64.deb \
 		--tag "grafana/grafana:master" \
 		--no-cache=true .
