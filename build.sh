@@ -7,6 +7,9 @@ if [ "$_grafana_version" != "" ]; then
 	echo "Building version ${_grafana_version}"
 	echo "Download url: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${_grafana_version}_amd64.deb"
 	docker build \
+		--build-arg http_proxy=$http_proxy \
+		--build-arg https_proxy=$https_proxy \
+		--build-arg no_proxy=$no_proxy \
 		--build-arg DOWNLOAD_URL=https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${_grafana_version}_amd64.deb \
 		--tag "grafana/grafana:${_grafana_version}" \
 		--no-cache=true .
